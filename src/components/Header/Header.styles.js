@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-export const Wrapper = styled.div `
-    padding: 0 20px;
-    background: var(--darkGrey);
-`
+export const Wrapper = styled.div`
+	padding: 0 20px;
+	background: var(--darkPurple);
+`;
 
 export const Content = styled.div`
 	display: flex;

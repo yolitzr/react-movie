@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { BACKDROP_SIZE, IMAGE_BASE_URL } from '../config';
 //Components
 import { Hero } from './Hero'
+import { Grid } from './Grid';
 //Custmon Hooks
 import { useHomeFetch } from '../hooks/useHomeFetch';
 //Images
@@ -22,7 +23,13 @@ export function Home() {
                     text={movieData.results[0].overview}
 				/>
 			) : null}
+
+			<Grid header='Popular Movies'>
+				{movieData.results.map(movie => (
+					<div key={movie.id}>{movie.title}</div>
+				))}
+			</Grid>
 		</>
 	);
 }
- 
+   
