@@ -16,16 +16,21 @@ const defaultConfig = {
 };
 
 const apiSettings = {
+	//General Movies
 	fetchMovies: async (searchTerm, page) => {
 		const endpoint = searchTerm
 			? `${SEARCH_BASE_URL}${searchTerm}&page=${page}`
 			: `${POPULAR_BASE_URL}&page=${page}`;
 		return await (await fetch(endpoint)).json();
 	},
+
+	//One Movie
 	fetchMovie: async (movieId) => {
 		const endpoint = `${API_URL}movie/${movieId}?api_key=${API_KEY}`;
 		return await (await fetch(endpoint)).json();
 	},
+
+	// Credits Movie
 	fetchCredits: async (movieId) => {
 		const creditsEndpoint = `${API_URL}movie/${movieId}/credits?api_key=${API_KEY}`;
 		return await (await fetch(creditsEndpoint)).json();
