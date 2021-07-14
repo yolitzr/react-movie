@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
 //Config
-import { BACKDROP_SIZE, IMAGE_BASE_URL } from '../config';
+import { POSTER_SIZE, BACKDROP_SIZE, IMAGE_BASE_URL } from '../config';
 //Components
 import { Hero } from './Hero'
 import { Grid } from './Grid';
+import { Thumb } from './Thumb';
 //Custmon Hooks
 import { useHomeFetch } from '../hooks/useHomeFetch';
 //Images
-// import NoCover from '../assets/img/no_image.jpg ';
+import NoCover from '../assets/img/no_image.jpg';
 // import { ConsoleWriter } from 'istanbul-lib-report';
 
 export function Home() {
 	const { movieData } = useHomeFetch();
-	console.log(movieData);
 
 	return (
 		<>
@@ -26,7 +26,15 @@ export function Home() {
 
 			<Grid header='Popular Movies'>
 				{movieData.results.map(movie => (
-					<div key={movie.id}>{movie.title}</div>
+					<Thumb 
+						key={movie.id}
+						clickable
+						image={movie.poster_path 
+						? IMAGE_BASE_URL + POSTER_SIZE + movie.poster_path
+						: NoCover
+						}
+						movieId={movie.id}
+					/>
 				))}
 			</Grid>
 		</>

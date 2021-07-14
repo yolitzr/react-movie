@@ -6,17 +6,19 @@ export const Wrapper = styled.div`
     padding: 2rem 2.5rem;
 
     h2 {
+        margin-top: 2rem;
         font-size: var(--fontSuperBig);
         color: var(--medGrey);
 
         @media screen and (max-width: 768px) {
-            font-size: var(--fontBig);
+            font-size: var(--fontSuperBig);
         }
     }
 `;
 
 export const Content = styled.div`
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Responsive Option */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive Option */
     grid-gap: 2rem;
+    padding-top: 2rem;
 `;
