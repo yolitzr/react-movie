@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 //Config
-// import { POSTER_SIZE, BACKDROP_SIZE, IMAGE_BASE_URL } from '../config';
-
+import { BACKDROP_SIZE, IMAGE_BASE_URL } from '../config';
+//Components
+import { Hero } from './Hero'
 //Custmon Hooks
 import { useHomeFetch } from '../hooks/useHomeFetch';
 //Images
@@ -9,10 +10,19 @@ import { useHomeFetch } from '../hooks/useHomeFetch';
 // import { ConsoleWriter } from 'istanbul-lib-report';
 
 export function Home() {
- const { movieData, loading, error } = useHomeFetch();
+	const { movieData } = useHomeFetch();
+	console.log(movieData);
 
-    console.log(movieData)
-
-	return <div>Home Page</div>;
+	return (
+		<>
+			{movieData.results[0] ? (
+				<Hero
+					image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${movieData.results[0].backdrop_path}`}
+                    title={movieData.results[0].original_title}
+                    text={movieData.results[0].overview}
+				/>
+			) : null}
+		</>
+	);
 }
  

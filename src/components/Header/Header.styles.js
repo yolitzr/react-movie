@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div `
-    background: var(--darkGrey);
     padding: 0 20px;
+    background: var(--darkGrey);
 `
 
 export const Content = styled.div`
@@ -10,7 +10,7 @@ export const Content = styled.div`
 	align-items: center;
 	justify-content: space-between;
 	max-width: var(--maxWidth);
-	padding: 20px 0;
+	padding: 2rem;
 	margin: 0 auto;
 `;
 
