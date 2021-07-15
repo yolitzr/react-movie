@@ -32,7 +32,7 @@ export const Content = styled.div`
 
 export const Text = styled.div`
     position: absolute;
-    bottom: 60px;
+    bottom: 80px;
     max-width: 720px;
     min-height: 100px;
     margin-right: 20px;

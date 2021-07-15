@@ -6,6 +6,7 @@ import { Hero } from './Hero'
 import { Grid } from './Grid';
 import { Thumb } from './Thumb';
 import Spinner from './Spinner';
+import { SeacrhBar } from './SearchBar';
 //Custmon Hooks
 import { useHomeFetch } from '../hooks/useHomeFetch';
 //Images
@@ -13,7 +14,7 @@ import NoCover from '../assets/img/no_image.jpg';
 // import { ConsoleWriter } from 'istanbul-lib-report';
 
 export function Home() {
-	const { movieData } = useHomeFetch();
+	const { movieData, setSearch } = useHomeFetch();
 
 	return (
 		<>
@@ -24,6 +25,8 @@ export function Home() {
                     text={movieData.results[0].overview}
 				/>
 			) : null}
+
+			<SeacrhBar  setSearchTerm={setSearch} />
 
 			<Grid header='Popular Movies'>
 				{movieData.results.map(movie => (
