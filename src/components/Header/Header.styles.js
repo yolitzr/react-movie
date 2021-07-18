@@ -10,7 +10,7 @@ export const Content = styled.div`
 	align-items: center;
 	justify-content: space-between;
 	max-width: var(--maxWidth);
-	padding: 2rem;
+	padding: 1rem;
 	margin: 0 auto;
 `;
 

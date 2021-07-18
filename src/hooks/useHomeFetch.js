@@ -17,10 +17,9 @@ export function useHomeFetch() {
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState(false);
 	const [ search, setSearch ]= useState('');
+	const [isLoadingMore, setIsLoadingMore] = useState(false);
 
-	console.log(search)
-
-	const fetchMovies = async (page, searchTerm = '') => {
+	const fetchMovies = async (page, searchTerm = '') => { 
 		try {
 			setError(false);
 			setLoading(true);
@@ -41,10 +40,19 @@ export function useHomeFetch() {
 		setLoading(false);
 	};
 
-	//useEffect - Initial render
+	//useEffect - Initial render and search
 	useEffect(() => {
-		fetchMovies(1);
-	}, []);
+		setmovieData(initialState); // Initial state before make a new search. (It always goes before the search or fetch). This show all the movies again.
+		fetchMovies(1, search); //1 = Inicio en la pagina 1
+	}, [search]);
 
-    return { movieData, loading, error, setSearch };
+	//Load More
+	useEffect(() => {
+		if (!isLoadingMore) return; //Return if no more data is being loaded.
+
+		fetchMovies(movieData.page + 1, search); 
+		setIsLoadingMore(false);
+	}, [isLoadingMore, search, movieData.page]);
+
+    return { movieData, loading, error, search, setSearch,  setIsLoadingMore };
 };

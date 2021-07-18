@@ -7,41 +7,50 @@ import { Grid } from './Grid';
 import { Thumb } from './Thumb';
 import Spinner from './Spinner';
 import { SeacrhBar } from './SearchBar';
+import { Button } from './Button'
 //Custmon Hooks
 import { useHomeFetch } from '../hooks/useHomeFetch';
 //Images
 import NoCover from '../assets/img/no_image.jpg';
-// import { ConsoleWriter } from 'istanbul-lib-report';
 
 export function Home() {
-	const { movieData, setSearch } = useHomeFetch();
+	const { movieData, error, loading, search, setSearch, setIsLoadingMore } = useHomeFetch();
+
+	if(error) return <div>Something went wrong...</div>;
 
 	return (
 		<>
-			{movieData.results[0] ? (
+			{!search && movieData.results[0] ? (
 				<Hero
 					image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${movieData.results[0].backdrop_path}`}
-                    title={movieData.results[0].original_title}
-                    text={movieData.results[0].overview}
+					title={movieData.results[0].original_title}
+					text={movieData.results[0].overview}
 				/>
 			) : null}
 
-			<SeacrhBar  setSearchTerm={setSearch} />
+			<SeacrhBar setSearchTerm={setSearch} />
 
-			<Grid header='Popular Movies'>
-				{movieData.results.map(movie => (
-					<Thumb 
+			<Grid header={search ? 'Search Result' : 'Popular Movies'}>
+				{movieData.results.map((movie) => (
+					<Thumb
 						key={movie.id}
 						clickable
-						image={movie.poster_path 
-						? IMAGE_BASE_URL + POSTER_SIZE + movie.poster_path
-						: NoCover
+						image={
+							movie.poster_path
+								? IMAGE_BASE_URL +
+								  POSTER_SIZE +
+								  movie.poster_path
+								: NoCover
 						}
 						movieId={movie.id}
 					/>
 				))}
 			</Grid>
-			<Spinner />
+			{movieData.page < movieData.total_pages && !loading && (
+				<Button text="Load More" 
+				callback={() => setIsLoadingMore(true)} />
+			)}
+			{loading && <Spinner />}
 		</>
 	);
 }
