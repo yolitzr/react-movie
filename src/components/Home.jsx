@@ -42,13 +42,15 @@ export function Home() {
 								  movie.poster_path
 								: NoCover
 						}
-						movieId={movie.id}
+						movieSlug={movie.title}
 					/>
 				))}
 			</Grid>
 			{movieData.page < movieData.total_pages && !loading && (
-				<Button text="Load More" 
-				callback={() => setIsLoadingMore(true)} />
+				<Button
+					text="Load More"
+					callback={() => setIsLoadingMore(true)}
+				/>
 			)}
 			{loading && <Spinner />}
 		</>
