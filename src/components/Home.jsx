@@ -42,7 +42,7 @@ export function Home() {
 								  movie.poster_path
 								: NoCover
 						}
-						movieSlug={movie.title}
+						movieSlug={movie.id} // No funciona el slug en esta api, debe de ser por id.
 					/>
 				))}
 			</Grid>

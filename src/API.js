@@ -25,14 +25,14 @@ const apiSettings = {
 	},
 
 	//One Movie
-	fetchMovie: async (movieId) => {
-		const endpoint = `${API_URL}movie/${movieId}?api_key=${API_KEY}`;
+	fetchMovie: async (movieSlug) => {
+		const endpoint = `${API_URL}movie/${movieSlug}?api_key=${API_KEY}`;
 		return await (await fetch(endpoint)).json();
 	},
 
 	// Credits Movie
-	fetchCredits: async (movieId) => {
-		const creditsEndpoint = `${API_URL}movie/${movieId}/credits?api_key=${API_KEY}`;
+	fetchCredits: async (movieSlug) => {
+		const creditsEndpoint = `${API_URL}movie/${movieSlug}/credits?api_key=${API_KEY}`;
 		return await (await fetch(creditsEndpoint)).json();
 	},
 	// Bonus material below for login
