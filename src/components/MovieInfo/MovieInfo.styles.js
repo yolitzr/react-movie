@@ -42,6 +42,10 @@ export const Text = styled.div`
 	color: var(--white);
 	overflow: hidden;
 
+    @media screen and (max-width: 620px) {
+        padding: 2rem;
+    }
+
     h2 {
         margin: 1.5rem 0;
     }
