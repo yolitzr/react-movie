@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 //Styles
 import { Wrapper, Image } from './Actors.styles'
 
@@ -10,4 +11,10 @@ export function Actors({ name, character, imageUrl }) {
             <p>{character}</p>
         </Wrapper>
     )
+}
+
+Actors.propTypes = {
+    name: PropTypes.string,
+    character: PropTypes.string,
+    imageUrl: PropTypes.string,
 }

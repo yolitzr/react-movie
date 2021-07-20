@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 //Styles
 import { Wrapper, Content, Text } from './MovieInfo.styles';
 // Components
@@ -45,4 +46,8 @@ export function MovieInfo({ data }) {
 			</Content>
 		</Wrapper>
 	);
+}
+
+MovieInfo.propTypes = {
+	data: PropTypes.object,
 }

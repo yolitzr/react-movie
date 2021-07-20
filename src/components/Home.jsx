@@ -6,7 +6,7 @@ import { Hero } from './Hero'
 import { Grid } from './Grid';
 import { Thumb } from './Thumb';
 import Spinner from './Spinner';
-import { SeacrhBar } from './SearchBar';
+import { SearchBar } from './SearchBar';
 import { Button } from './Button'
 //Custmon Hooks
 import { useHomeFetch } from '../hooks/useHomeFetch';
@@ -28,7 +28,7 @@ export function Home() {
 				/>
 			) : null}
 
-			<SeacrhBar setSearchTerm={setSearch} />
+			<SearchBar setSearchTerm={setSearch} />
 
 			<Grid header={search ? 'Search Result' : 'Popular Movies'}>
 				{movieData.results.map((movie) => (

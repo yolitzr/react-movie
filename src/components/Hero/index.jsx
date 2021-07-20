@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 //Styles
 import { Wrapper, Content, Text } from './Hero.styles'
 
@@ -13,4 +14,10 @@ export function Hero({ image, title, text }) {
 			</Content>
 		</Wrapper>
 	);
+}
+
+Hero.propTypes = {
+	image: PropTypes.string,
+	title: PropTypes.string,
+	text: PropTypes.string,
 }

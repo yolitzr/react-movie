@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
 //Images
 import searchIcon from '../../assets/img/search-icon.svg';
 //Styles
 import { Wrapper, Content } from './SearchBar.styles';
 
-export function SeacrhBar({ setSearchTerm }) {
+export function SearchBar({ setSearchTerm }) {
     //useState
     const [searchState, setSearchState] = useState('');
     //useRef
@@ -39,4 +40,8 @@ export function SeacrhBar({ setSearchTerm }) {
 			</Content>
 		</Wrapper>
 	);
+}
+
+SearchBar.propTypes = {
+	setSearchTerm: PropTypes.func,
 }
