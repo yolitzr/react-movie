@@ -1,4 +1,3 @@
-import { is } from "@babel/types";
 import { useState, useEffect } from "react";
 // API
 import API from '../API.js'
