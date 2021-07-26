@@ -34,7 +34,7 @@ export function Movie() {
 			<Grid header='Actors'>
 				{movie.actors.map(actor => (
 					<Actors 
-						key={actor.id}
+						key={actor.credit_id}
 						name={actor.name}
 						character={actor.character}
 						imageUrl={actor.profile_path

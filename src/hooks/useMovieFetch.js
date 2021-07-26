@@ -1,6 +1,9 @@
+import { is } from "@babel/types";
 import { useState, useEffect } from "react";
 // API
 import API from '../API.js'
+// Helpers
+import  { isPersistedState } from '../helpers'
 
 export function useMovieFecth(movieSlug) {
 	//useState
@@ -8,8 +11,8 @@ export function useMovieFecth(movieSlug) {
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(false);
 
-    //useEffect (When the component mounts)
-    useEffect(() => {
+	//useEffect (When the component mounts)
+	useEffect(() => {
 		const fetchData = async () => {
 			try {
 				setLoading(true);
@@ -35,8 +38,21 @@ export function useMovieFecth(movieSlug) {
 			}
 		};
 
+		const sessionStorage = isPersistedState(movieSlug);
+
+		if (sessionStorage) {
+			setMovie(sessionStorage);
+			setLoading(false);
+			return;
+		}
+
 		fetchData();
 	}, [movieSlug]);
 
-    return { movie, loading, error }
+	// Write to sessionStage
+	useEffect(() => {
+		sessionStorage.setItem(movieSlug, JSON.stringify(movie));
+	}, [movieSlug, movie])
+
+	return { movie, loading, error };
 }

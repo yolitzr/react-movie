@@ -36,7 +36,7 @@ export function MovieInfo({ data }) {
 								DIRECTOR{data.directors.lengtg > 1 ? 'S' : ''}
 							</h4>
 							{data.directors.map((director) => (
-								<p key={director.id}>
+								<p key={director.credit_id}>
                                     {director.name}
                                 </p>
 							))}

@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 //API
 import API from '../API.js';
+//Helpers
+import { isPersistedState } from "../helpers.js";
 
 const initialState = {
     page: 0,
@@ -42,6 +44,14 @@ export function useHomeFetch() {
 
 	//useEffect - Initial render and search
 	useEffect(() => {
+		if (!search) {
+			const sessionState = isPersistedState('homeState');
+
+			if (sessionState) {
+				setmovieData(sessionState);
+				return;
+			}
+		}
 		setmovieData(initialState); // Initial state before make a new search. (It always goes before the search or fetch). This show all the movies again.
 		fetchMovies(1, search); //1 = Inicio en la pagina 1
 	}, [search]);
@@ -53,6 +63,11 @@ export function useHomeFetch() {
 		fetchMovies(movieData.page + 1, search); 
 		setIsLoadingMore(false);
 	}, [isLoadingMore, search, movieData.page]);
+
+	//Write to sessionStorage
+	useEffect(() => {
+		if(!search) sessionStorage.setItem('homeState', JSON.stringify(movieData))
+	}, [search, movieData])
 
     return { movieData, loading, error, search, setSearch,  setIsLoadingMore };
 };

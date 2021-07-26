@@ -5,7 +5,7 @@ export const Wrapper = styled.div`
     height: 75vh;
     background: linear-gradient(
         to bottom, rgb(225, 225, 225, 0.2)
-        5%, rgb(40,15,50,0.95)
+        50%, rgb(40,15,50,0.95)
         100%
     ),
     url(${({ image }) => image}), var(--darkGrey);
