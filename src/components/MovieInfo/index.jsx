@@ -1,15 +1,28 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+//API
+import API from '../../API'
 //Styles
 import { Wrapper, Content, Text } from './MovieInfo.styles';
 // Components
 import { Thumb } from '../Thumb';
+import { Rate } from '../Rate'
 //Config    
 import { IMAGE_BASE_URL, POSTER_SIZE } from '../../config';
 //Image
 import NoCover from '../../assets/img/no_image.jpg'
+//Context
+import { Context } from '../../context'
 
 export function MovieInfo({ data }) {
+	const [user] = useContext(Context);
+
+	const handleRating = async value =>  {
+		const rate = await API.rateMovie(user.sessionId, data.id, value);
+
+		console.log(rate)
+	}
+
     return (
 		<Wrapper backdrop={data.backdrop_path}>
 			<Content>
@@ -42,6 +55,12 @@ export function MovieInfo({ data }) {
 							))}
 						</div>
 					</div>
+					{user && 
+						(<div>
+							<p>Rate Movie</p>
+							<Rate callback={handleRating} />
+						</div>)
+					}
 				</Text>
 			</Content>
 		</Wrapper>
