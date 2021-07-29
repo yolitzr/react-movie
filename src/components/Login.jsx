@@ -36,12 +36,13 @@ export function Login() {
         try {
             const requestToken = await API.getRequestToken();
             const sessionId = await API.authenticate(
-                requestToken,
-                username,
-                password,
-            );
-
+				requestToken,
+				username,
+				password,
+			);
             setUserLogin({ sessionId: sessionId.session_id, username });
+
+            navigate('/');
 
         } catch(error) {
             setError(true)
@@ -51,20 +52,27 @@ export function Login() {
 
     return (
 		<Wrapper>
-			<label>Username:</label>
-			<input
-				type="text"
-				value={username}
-				name="username"
-				onChange={handleInput}
-			/>
-			<label>Password</label>
-			<input
-				type="password"
-				value={password}
-				name="password"
-				onChange={handleInput}
-			/>
+			{error && <div className="error">There was an error!</div>}
+			<div className="form">
+				<label>Username:</label>
+				<input
+					placeholder="Enter your username"
+					type="text"
+					value={username}
+					name="username"
+					onChange={handleInput}
+				/>
+			</div>
+			<div className="form">
+				<label>Password:</label>
+				<input
+					placeholder="Enter your password"
+					type="password"
+					value={password}
+					name="password"
+					onChange={handleInput}
+				/>
+			</div>
 			<Button text="Login" callback={handleSubmit} />
 		</Wrapper>
 	);
